@@ -1,10 +1,10 @@
-# EPUB Translator Toolkit
+# EPUB Translate
 
-A practical toolkit for translating EPUB books with AI assistance. Handles text extraction, code preservation, translation injection, and EPUB rebuilding. Language-agnostic — works with any source/target language pair.
+An AI agent skill for translating EPUB books with code preservation and progressive batch translation. Language-agnostic — works with any source/target language pair. Part of the [agentskills.io](https://agentskills.io) ecosystem.
 
 ## Background
 
-Built and battle-tested during two real translation projects. Version 0.0.2 includes fixes for container blocks, inline tag preservation, NCX navigation, and language metadata.
+Built and battle-tested during two real translation projects. v0.0.2 includes fixes for container blocks, inline tag preservation, NCX navigation, and language metadata.
 
 | Book | Segments | Volume |
 |------|----------|--------|
@@ -50,6 +50,18 @@ The JSON acts as the single source of truth. Translate segments in any way:
 - Repacks as a new EPUB with identical formatting
 
 ## Installation
+
+### 1. Install the Skill
+
+```bash
+# via npx skills (Vercel — 50+ agents supported)
+npx skills add wangxu-dev/epub-translator-skills
+
+# via mcp-skill-cli (install the CLI first: npm install -g mcp-skill-cli)
+skill install epub-translate
+```
+
+### 2. Install Runtime Dependency
 
 ```bash
 pip install beautifulsoup4
@@ -126,8 +138,10 @@ No hardcoded language logic. The same workflow works for EN→ZH, EN→ES, DE→
 ## Project Structure
 
 ```
-epub-translator-toolkit/
-├── SKILL.md                  # Skill definition (workflow & guidance)
+epub-translate/
+├── SKILL.md                  # Skill definition (agentskills spec)
+├── metadata.json             # Skill metadata for mcp-skill-cli
+├── LICENSE                   # MIT License
 ├── README.md                 # English documentation
 ├── README_ZH.md              # Chinese documentation
 └── scripts/

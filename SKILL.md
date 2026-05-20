@@ -1,21 +1,19 @@
 ---
-name: epub-translator
-description: AI-assisted EPUB book translation toolkit. Extracts text from EPUBs while preserving code blocks, supports progressive batch translation via structured JSON, and rebuilds translated EPUBs. Language-agnostic — works for any source/target language pair. Trigger when the user wants to translate an EPUB book, extract translatable content from an ebook, or batch-process book translations with AI assistance.
-author: wangxu
-version: 0.0.2
-date: 2026-05-20
+name: epub-translate
+description: AI-assisted EPUB book translation. Extracts text while preserving code blocks, supports progressive batch translation via JSON workflow, and rebuilds translated EPUBs. Language-agnostic — works with any source/target language pair. Use when translating EPUB books or batch-processing book translations with AI assistance.
+license: MIT
 ---
 
-# EPUB Translator
+# EPUB Translate
 
 Translate EPUB books with AI assistance. Three phases: extract → translate → build.
 
-## Version History
+## When to Use
 
-| Version | Date | Changes |
-|---------|------|---------|
-| 0.0.2 | 2026-05-20 | Container block fix, inline tag preservation, NCX support, language metadata, line ending normalization |
-| 0.0.1 | 2026-05-20 | Initial release |
+- User wants to translate an EPUB book from one language to another
+- Extract translatable content from an EPUB for batch processing
+- Build a translated EPUB from completed translations
+- Check translation progress or verify translation completeness
 
 ## Project Setup
 
@@ -30,7 +28,7 @@ Always copy the source file. Never modify the user's original.
 ## Phase 1: Export
 
 ```bash
-python /path/to/scripts/epub_translator.py export ./source.epub -o translations.json
+python scripts/epub_translator.py export ./source.epub -o translations.json
 ```
 
 What happens:
@@ -47,7 +45,7 @@ What happens:
 
 After export:
 ```bash
-python /path/to/scripts/epub_translator.py info translations.json
+python scripts/epub_translator.py info translations.json
 ```
 
 ## Phase 2: Translate
@@ -55,11 +53,11 @@ python /path/to/scripts/epub_translator.py info translations.json
 Work in batches of 100-200 segments. Process in order.
 
 ```bash
-python /path/to/scripts/batch_translate.py extract translations.json 0 100
+python scripts/batch_translate.py extract translations.json 0 100
 # Translate batch_0_100.txt → batch_0_100_translated.json
-python /path/to/scripts/batch_translate.py inject translations.json batch_0_100_translated.json
-python /path/to/scripts/epub_translator.py info translations.json
-python /path/to/scripts/batch_translate.py extract translations.json 100 200
+python scripts/batch_translate.py inject translations.json batch_0_100_translated.json
+python scripts/epub_translator.py info translations.json
+python scripts/batch_translate.py extract translations.json 100 200
 ```
 
 Critical rules:
@@ -70,7 +68,7 @@ Critical rules:
 ## Phase 3: Build
 
 ```bash
-python /path/to/scripts/epub_translator.py build ./source.epub translations.json -o "Book-Name-zh.epub"
+python scripts/epub_translator.py build ./source.epub translations.json -o "Book-Name-zh.epub"
 ```
 
 Build process:

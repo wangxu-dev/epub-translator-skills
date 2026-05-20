@@ -1,6 +1,6 @@
 # EPUB 翻译工具集
 
-基于 AI 辅助的 EPUB 书籍翻译工具。处理文本提取、代码保护、翻译注入和 EPUB 重建。语言无关——适用于任意源语言/目标语言组合。
+基于 AI 辅助的 EPUB 书籍翻译 skill。处理文本提取、代码保护、翻译注入和 EPUB 重建。语言无关——适用于任意源语言/目标语言组合。属于 [agentskills.io](https://agentskills.io) 生态。
 
 ## 背景
 
@@ -50,6 +50,18 @@ JSON 作为唯一数据源。可以任意方式翻译：
 - 重新打包为新 EPUB，格式与原版一致
 
 ## 安装
+
+### 1. 安装 Skill
+
+```bash
+# 通过 npx skills（Vercel — 支持 50+ agent 平台）
+npx skills add wangxu-dev/epub-translator-skills
+
+# 通过 mcp-skill-cli（先安装 CLI: npm install -g mcp-skill-cli）
+skill install epub-translate
+```
+
+### 2. 安装运行时依赖
 
 ```bash
 pip install beautifulsoup4
@@ -126,11 +138,15 @@ python scripts/batch_translate.py extract translations.json 100 200
 ## 项目结构
 
 ```
-epub-translator-toolkit/
+epub-translate/
+├── SKILL.md                  # Skill 定义（agentskills 规范）
+├── metadata.json             # Skill 元数据（mcp-skill-cli 用）
+├── LICENSE                   # MIT 协议
 ├── README.md                 # 英文文档
 ├── README_ZH.md              # 中文文档
-├── epub_translator.py        # 主脚本：导出 / 进度 / 构建
-└── batch_translate.py        # 辅助工具：分批提取/注入
+└── scripts/
+    ├── epub_translator.py    # 主脚本：导出 / 进度 / 构建
+    └── batch_translate.py    # 辅助工具：分批提取/注入
 
 book-project/
 ├── book.epub                 # 原版 EPUB
